@@ -1,0 +1,17 @@
+
+version: '3'
+services:
+  backend:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./client_secrets.json:/app/client_secrets.json
+  frontend:
+    image: node:16
+    working_dir: /app
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "3000:3000"
+    command: sh -c "npm install && npm start"
